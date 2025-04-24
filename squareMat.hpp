@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 
-namespace theMatrix{ //(כן זה בכוונה.)
+namespace theMatrix { //(כן זה בכוונה.)
 	class SquareMat
 	{
 	private:

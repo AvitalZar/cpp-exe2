@@ -232,6 +232,23 @@ TEST_CASE("Testing ^ operator") {
     CHECK(b[0][1] == 2);
     CHECK(b[1][0] == 2);
     CHECK(b[1][1] == 1);
+
+	SUBCASE("Power 0") {
+        SquareMat identity = a ^ 0;
+        CHECK(identity[0][0] == doctest::Approx(1.0));
+        CHECK(identity[0][1] == doctest::Approx(0.0));
+        CHECK(identity[1][0] == doctest::Approx(0.0));
+        CHECK(identity[1][1] == doctest::Approx(1.0));
+    }
+
+    SUBCASE("Power 1") {
+        SquareMat result = a ^ 1;
+        CHECK(result[0][0] == 1);
+        CHECK(result[0][1] == 1);
+        CHECK(result[1][0] == 1);
+        CHECK(result[1][1] == 0);
+    }
+
 }
 
 TEST_CASE("Testing <op>= operator") {
@@ -305,6 +322,20 @@ TEST_CASE("Testing <op>= operator") {
 			CHECK(a[1][1] == doctest::Approx(1));
 		}
 	
+}
+
+TEST_CASE("Testing SquareMat printing") {
+    SquareMat m(3);
+	m[0][0] = 0; m[0][1] = 1; m[0][2] = 2;
+	m[1][0] = 3; m[1][1] = 4; m[1][2] = 5;
+	m[2][0] = 6; m[2][1] = 7; m[2][2] = 8;
+    
+    std::stringstream ss;
+    ss << m;
+
+    std::string expected_output = "0 1 2 \n3 4 5 \n6 7 8 \n";
+    
+    CHECK(ss.str() == expected_output);
 }
 
 

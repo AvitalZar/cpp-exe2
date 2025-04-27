@@ -146,9 +146,10 @@ namespace theMatrix{
 
 	SquareMat theMatrix::SquareMat::operator^(int n) const
 	{
-		SquareMat ans = *this;
+		SquareMat ans(*this);
+		n--;
 		while(n>0){
-			ans *= ans;
+			ans *= *this;
 			n--;
 		}
 		return ans;

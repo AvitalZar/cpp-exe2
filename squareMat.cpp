@@ -1,3 +1,4 @@
+//tchykzr@gmail.com
 #include "squareMat.hpp"
 
 using namespace std;

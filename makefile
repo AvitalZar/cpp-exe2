@@ -1,3 +1,4 @@
+#tchykzr@gmail.com
 CXX = g++ -g
 CXXFLAGS = -std=c++2a -Wall -Wextra -pedantic -Werror
 

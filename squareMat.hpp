@@ -14,15 +14,16 @@ namespace theMatrix { //(כן זה בכוונה.)
 		SquareMat(const SquareMat& other);
 
 
+		double sum() const;
+		int get_size() const;
 		//operators:
 
-		double sum() const;
 
 		//two [] operators, one so we can change the matrix and one for constant matrices.
 		const double* operator[](int i) const;
 		double* operator[](int i);
 
-		SquareMat operator=(const SquareMat &other);
+		SquareMat& operator=(const SquareMat &other);
 
 		SquareMat operator+(const SquareMat& other) const;
 		SquareMat operator-(const SquareMat& other) const;
@@ -37,8 +38,8 @@ namespace theMatrix { //(כן זה בכוונה.)
 		SquareMat operator/(double num) const;
 		SquareMat operator^(int n) const;
 
-		SquareMat operator++();
-		SquareMat operator--();
+		SquareMat& operator++();
+		SquareMat& operator--();
 		SquareMat operator++(int);
 		SquareMat operator--(int);
 
@@ -55,16 +56,16 @@ namespace theMatrix { //(כן זה בכוונה.)
 		
 		double operator!() const;
 
-		SquareMat operator*=(const SquareMat &other);
-		SquareMat operator+=(const SquareMat &other);
-		SquareMat operator-=(const SquareMat &other);
-		SquareMat operator/=(double x);
-		SquareMat operator%=(const SquareMat &other);
+		SquareMat& operator*=(const SquareMat &other);
+		SquareMat& operator+=(const SquareMat &other);
+		SquareMat& operator-=(const SquareMat &other);
+		SquareMat& operator/=(double x);
+		SquareMat& operator%=(const SquareMat &other);
 
-		SquareMat operator*=(double x);
-		SquareMat operator%=(double x);
+		SquareMat& operator*=(double x);
+		SquareMat& operator%=(double x);
 
-		friend std::ostream& operator<< (std::ostream& output, const SquareMat t);
+		friend std::ostream& operator<< (std::ostream& output, const SquareMat& t);
 
 		
 

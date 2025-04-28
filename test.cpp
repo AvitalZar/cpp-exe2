@@ -5,8 +5,9 @@
 using namespace theMatrix;
 
 TEST_CASE("Test Constructor") {
-    theMatrix::SquareMat mat(2);
+    SquareMat mat(2);
     CHECK(mat.sum() == 0);
+	SquareMat greater(1000);
 }
 
 TEST_CASE("Test = Operator") {
@@ -248,6 +249,20 @@ TEST_CASE("Testing ^ operator") {
         CHECK(result[1][0] == 1);
         CHECK(result[1][1] == 0);
     }
+    SUBCASE("Power 2") {
+        SquareMat result = a ^ 2;
+        CHECK(result[0][0] == 2);
+        CHECK(result[0][1] == 1);
+        CHECK(result[1][0] == 1);
+        CHECK(result[1][1] == 1);
+    }
+	SUBCASE("big matrix") {
+		SquareMat big(30);
+		for(int i = 0; i < 29; i++){
+			big[i][i+1] = i;
+		}
+		big^29;
+	}
 
 }
 
@@ -338,8 +353,29 @@ TEST_CASE("Testing SquareMat printing") {
     CHECK(ss.str() == expected_output);
 }
 
+TEST_CASE("determinant ! operator") {
+	SquareMat x(1);
+	x[0][0] = 3;
+	CHECK(!x == 3);
+
+    SquareMat mat(2);
+    mat[0][0] = 1; mat[0][1] = 2;
+    mat[1][0] = 3; mat[1][1] = 4;
+    
+    CHECK(!mat == -2);
+    
+    SquareMat mat3x3(3);
+    mat3x3[0][0] = 1; mat3x3[0][1] = 2; mat3x3[0][2] = 3;
+    mat3x3[1][0] = 0; mat3x3[1][1] = 1; mat3x3[1][2] = 4;
+    mat3x3[2][0] = 5; mat3x3[2][1] = 6; mat3x3[2][2] = 0;
+    
+    CHECK(!mat3x3 == 1);
+	SquareMat big(36);
+	//!big;
+}
 
 TEST_CASE("exceptions") {
+	CHECK_THROWS_AS(SquareMat x(0),std::invalid_argument);
     theMatrix::SquareMat mat1(2);
     theMatrix::SquareMat mat2(3);
 
